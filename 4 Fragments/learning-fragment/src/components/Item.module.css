@@ -6,3 +6,7 @@
 .theitem {
   background-color: khaki;
 }
+
+.button {
+  float: right;
+}
