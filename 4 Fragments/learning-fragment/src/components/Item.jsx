@@ -1,9 +1,5 @@
 import styles from "./Item.module.css";
-const Item = ({ foodItem }) => {
-  const handleBuyButtonClicked = (event) => {
-    console.log(event);
-    console.log(`${foodItem} being bought `);
-  };
+const Item = ({ foodItem, handleBuyButtonClicked }) => {
   return (
     <li className={`${styles["theitem"]} list-group-item theitem `}>
       <span className={styles["thespan"]}>{foodItem}</span>
@@ -16,5 +12,4 @@ const Item = ({ foodItem }) => {
     </li>
   );
 };
-
 export default Item;
