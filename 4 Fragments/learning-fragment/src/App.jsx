@@ -4,32 +4,27 @@ import FoodItems from "./components/FoodItems";
 import ErrorMessage from "./components/ErrorMessage";
 import Container from "./components/Container";
 import FoodInput from "./components/FoodInput";
+import { useState } from "react";
 function App() {
-  // let foodItems = [];
-  let foodItems = ["Dal", "Green Vegetables", "Roti", "Salad", "Milk", "Ghee"];
-  let textToShow = "Food Item Entered by user";
-  const handleOnchange = (event) => {
-    console.log(event.target.value);
-    textToShow = event.target.value;
+  let [foodItems, setFoodItems] = useState([]);
+
+  const onKeyDown = (event) => {
+    if (event.key === "Enter") {
+      let newFoodItem = event.target.value;
+      event.target.value = "";
+      let newItems = [...foodItems, newFoodItem];
+      setFoodItems(newItems);
+    }
   };
   return (
     <>
       <Container>
         <h1 className="food-heading">Healthy Food</h1>
+        <FoodInput handleKeyDown={onKeyDown}></FoodInput>
         <ErrorMessage items={foodItems}> </ErrorMessage>
-        <FoodInput handleOnChange={handleOnchange}></FoodInput>
-        <p>{textToShow}</p>
         <FoodItems items={foodItems}></FoodItems>
       </Container>
-
-      {/* <Container>
-        <p>
-          Above is the list of healthy foods that are good for your health and
-          well being
-        </p>
-      </Container> */}
     </>
   );
 }
-
 export default App;
