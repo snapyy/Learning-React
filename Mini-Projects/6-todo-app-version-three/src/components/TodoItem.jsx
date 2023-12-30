@@ -1,3 +1,4 @@
+import { AiFillDelete } from "react-icons/ai";
 function TodoItem({ todoName, todoDate, onDeleteClick }) {
   return (
     <div className="container text-center">
@@ -10,7 +11,7 @@ function TodoItem({ todoName, todoDate, onDeleteClick }) {
             className="btn btn-danger gaku-button"
             onClick={() => onDeleteClick(todoName)}
           >
-            Delete
+            <AiFillDelete />
           </button>
         </div>
       </div>
