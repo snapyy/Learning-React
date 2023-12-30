@@ -1,8 +1,9 @@
 import { useState } from "react";
 import styles from "./AddTodo.module.css";
+import { BiMessageAdd } from "react-icons/bi";
 function AddTodo({ onNewItem }) {
-  const [todoName, setTodoName] = useState();
-  const [dueDate, setDueDate] = useState();
+  const [todoName, setTodoName] = useState("");
+  const [dueDate, setDueDate] = useState("");
 
   const handleNameChange = (event) => {
     setTodoName(event.target.value);
@@ -43,7 +44,7 @@ function AddTodo({ onNewItem }) {
             className="btn btn-success gaku-button"
             onClick={handleAddButtonClicked}
           >
-            Add
+            <BiMessageAdd />
           </button>
         </div>
       </div>
