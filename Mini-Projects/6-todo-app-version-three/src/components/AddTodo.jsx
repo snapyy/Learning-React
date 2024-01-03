@@ -1,57 +1,45 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "./AddTodo.module.css";
 import { BiMessageAdd } from "react-icons/bi";
 function AddTodo({ onNewItem }) {
-  const [todoName, setTodoName] = useState("");
-  const [dueDate, setDueDate] = useState("");
+  const todoNameElement = useRef();
+  const dueDateElement = useRef();
 
-  const handleNameChange = (event) => {
-    setTodoName(event.target.value);
-  };
-  const handleDataChange = (event) => {
-    setDueDate(event.target.value);
-  };
-
-  const handleAddButtonClicked = () => {
+  const handleAddButtonClicked = (event) => {
+    event.preventDefault();
+    const todoName = todoNameElement.current.value;
+    const dueDate = dueDateElement.current.value;
+    console.log(`${todoName} due on : ${dueDate}`);
+    todoNameElement.current.value = "";
+    dueDateElement.current.value = "";
     onNewItem(todoName, dueDate);
-    setDueDate("");
-    setTodoName("");
   };
 
   return (
     <div className="container text-center">
-      <div className="row gaku-row">
+      <form className="row gaku-row" onSubmit={handleAddButtonClicked}>
         <div className="col-6">
           <input
             className={styles.inputName}
             type="text"
+            ref={todoNameElement}
             placeholder="Enter Todo Here"
-            value={todoName}
-            onChange={handleNameChange}
           />
         </div>
         <div className="col-4">
           <input
             type="date"
-            value={dueDate}
+            ref={dueDateElement}
             className={styles.inputName}
-            onChange={handleDataChange}
           />
         </div>
         <div className="col-2">
-          <button
-            type="button"
-            className="btn btn-success gaku-button"
-            onClick={handleAddButtonClicked}
-          >
+          <button type="submit" className="btn btn-success gaku-button">
             <BiMessageAdd />
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
 export default AddTodo;
-
-
-
