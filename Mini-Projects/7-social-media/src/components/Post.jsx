@@ -1,3 +1,4 @@
+
 const Post = () => {
   return (
     <div className="card" style={{ width: "18rem" }}>
@@ -16,3 +17,4 @@ const Post = () => {
 };
 
 export default Post;
+
